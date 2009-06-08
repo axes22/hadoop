@@ -1,7 +1,84 @@
 Yahoo! Distribution of Hadoop Change Log
 
 Patches from the following Apache Jira issues have been applied
-to this release. This is in addition to the patches applied from
-issues referenced in CHANGES.txt.
+to this release in the order indicated. This is in addition to
+the patches applied from issues referenced in CHANGES.txt.
+
+17. HADOOP-5818. Revert the renaming from FSNamesystem.checkSuperuserPrivilege
+    to checkAccess by HADOOP-5643.  (Amar Kamat via szetszwo)
+    https://issues.apache.org/jira/secure/attachment/12409835/5818for0.20.patch
+
+16. HADOOP-5801. Fixes the problem: If the hosts file is changed across restart
+    then it should be refreshed upon recovery so that the excluded hosts are
+    lost and the maps are re-executed. (Amar Kamat via ddas)
+    https://issues.apache.org/jira/secure/attachment/12409834/5801-0.20.patch
+
+15. HADOOP-5643. HADOOP-5643. Adds a way to decommission TaskTrackers 
+    while the JobTracker is running. (Amar Kamat via ddas)
+    https://issues.apache.org/jira/secure/attachment/12409833/Fixed+5643-0.20
+
+14. HADOOP-5923 and HADOOP-5924. Fixes a corner case problem to do with job recovery
+    with empty history files. Also, after a JT restart, sends KillTaskAction to
+    tasks that report back but the corresponding job hasn't been initialized
+    yet. (Amar Kamat via ddas)
+    https://issues.apache.org/jira/secure/attachment/12410172/H-5924.20.patch
+    https://issues.apache.org/jira/secure/attachment/12410174/H-5923.20.patch
+
+13. HADOOP-5908. Fixes a problem to do with ArithmeticException in the
+    JobTracker when there are jobs with 0 maps. (Amar Kamat via ddas)
+    https://issues.apache.org/jira/secure/attachment/12410171/HADOOP-5908-v3.2.20.patch
+
+12. HADOOP-5419. Provide a facility to query the Queue ACLs for the
+    current user.  (Rahul Kumar Singh via yhemanth)
+    http://issues.apache.org/jira/secure/attachment/12409323/hadoop-5419-v20.patch
+
+11. HADOOP-5733. Add map/reduce slot capacity and blacklisted capacity to
+    JobTracker metrics. (Sreekanth Ramakrishnan via cdouglas)
+    http://issues.apache.org/jira/secure/attachment/12409322/hadoop-5733-v20.patch
+
+10. HADOOP-5738. Split "waiting_tasks" JobTracker metric into waiting maps and
+    waiting reduces. (Sreekanth Ramakrishnan via cdouglas) 
+    https://issues.apache.org/jira/secure/attachment/12409321/5738-y20.patch
+
+9.  HADOOP-4842. Streaming now allows specifiying a command for the combiner.
+    (Amareshwari Sriramadasu via ddas)
+    http://issues.apache.org/jira/secure/attachment/12402355/patch-4842-3.txt
+
+8.  HADOOP-5739. After JobTracker restart Capacity Schduler does not schedules 
+    pending tasks from already running tasks. 
+    https://issues.apache.org/jira/secure/attachment/12410166/hadoop-5739-20-alt.patch
+
+7.  HADOOP-5396. Provide ability to refresh queue ACLs in the JobTracker
+    without having to restart the daemon.
+    (Sreekanth Ramakrishnan and Vinod Kumar Vavilapalli via yhemanth)
+    http://issues.apache.org/jira/secure/attachment/12409319/5396-20.patch
+
+6.  HADOOP-4490. Provide ability to run tasks as job owners.
+    (Sreekanth Ramakrishnan via yhemanth)
+    http://issues.apache.org/jira/secure/attachment/12409318/hadoop-4490-br20-3.patch
+    https://issues.apache.org/jira/secure/attachment/12410170/hadoop-4490-br20-3.2.patch
+
+5.  HADOOP-5442. Paginate jobhistory display and added some search
+    capabilities. (Amar Kamat via acmurthy)
+    http://issues.apache.org/jira/secure/attachment/12402301/HADOOP-5442-v1.12.patch
+
+4.  HADOOP-3327. Improves handling of READ_TIMEOUT during map output copying.
+    (Amareshwari Sriramadasu via ddas)
+    http://issues.apache.org/jira/secure/attachment/12399449/patch-3327-2.txt
+
+3.  HADOOP-5113. Fixed logcondense to remove files for usernames
+    beginning with characters specified in the -l option.
+    (Peeyush Bishnoi via yhemanth)
+    http://issues.apache.org/jira/secure/attachment/12409317/hadoop-5113-0.18.txt
+
+2.  HADOOP-2898. Provide an option to specify a port range for
+    Hadoop services provisioned by HOD.
+    (Peeyush Bishnoi via yhemanth)
+    http://issues.apache.org/jira/secure/attachment/12409316/hadoop-2898-0.20.txt
+
+1.  HADOOP-4930. Implement a Linux native executable that can be used to
+    launch tasks as users. (Sreekanth Ramakrishnan via yhemanth)
+    http://issues.apache.org/jira/secure/attachment/12409402/hadoop-4930v20.patch
+
 
 
