@@ -923,13 +923,14 @@ class TaskInProgress {
 
       t =
           new MapTask(jobFile, taskid, partition, rawSplit.getClassName(),
-              rawSplit.getBytes());
+              rawSplit.getBytes(), job.getUser());
 
     } else if (jobSetup || jobCleanup) {
-      t = new MapTask(jobFile, taskid, partition, null, new BytesWritable());
+      t = new MapTask(jobFile, taskid, partition, null, new BytesWritable(), 
+              job.getUser());
     }
     else {
-      t = new ReduceTask(jobFile, taskid, partition, numMaps);
+      t = new ReduceTask(jobFile, taskid, partition, numMaps, job.getUser());
     }
     if (jobCleanup) {
       t.setJobCleanupTask();
