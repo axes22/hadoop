@@ -540,6 +540,12 @@ public class UtilsForTests {
   // Start a job and return its RunningJob object
   static RunningJob runJob(JobConf conf, Path inDir, Path outDir)
                     throws IOException {
+    return runJob(conf, inDir, outDir, 1);
+  }
+
+  // Start a job and return its RunningJob object
+  static RunningJob runJob(JobConf conf, Path inDir, Path outDir, int numMaps)
+                    throws IOException {
 
     FileSystem fs = FileSystem.get(conf);
     fs.delete(outDir, true);
@@ -548,9 +554,11 @@ public class UtilsForTests {
     }
     String input = "The quick brown fox\n" + "has many silly\n"
         + "red fox sox\n";
-    DataOutputStream file = fs.create(new Path(inDir, "part-0"));
-    file.writeBytes(input);
-    file.close();
+    for (int i = 0; i < numMaps; ++i) {
+      DataOutputStream file = fs.create(new Path(inDir, "part-" + i));
+      file.writeBytes(input);
+      file.close();
+    }    
 
     conf.setInputFormat(TextInputFormat.class);
     conf.setOutputKeyClass(LongWritable.class);

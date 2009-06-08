@@ -590,6 +590,10 @@ class JobInProgress {
     return inputLength;
   }
  
+  boolean isCleanupLaunched() {
+    return launchedCleanup;
+  }
+
   /**
    * Get the list of map tasks
    * @return the raw array of maps for this job
@@ -939,8 +943,9 @@ class JobInProgress {
                                             int clusterSize, 
                                             int numUniqueHosts
                                            ) throws IOException {
-    if (status.getRunState() != JobStatus.RUNNING) {
-      LOG.info("Cannot create task split for " + profile.getJobID());
+    if (this.numMapTasks == 0 || status.getRunState() != JobStatus.RUNNING) {
+      LOG.info("Cannot find map task for " + jobId + "(state : " 
+               + status.getRunState() + ", num-maps : " + this.numMapTasks);
       return null;
     }
         
@@ -1000,7 +1005,7 @@ class JobInProgress {
                                                      int clusterSize, 
                                                      int numUniqueHosts)
   throws IOException {
-    if (!tasksInited.get()) {
+    if (this.numMapTasks == 0 || !tasksInited.get()) {
       LOG.info("Cannot create task split for " + profile.getJobID());
       return null;
     }
@@ -1023,7 +1028,7 @@ class JobInProgress {
                                                     int clusterSize, 
                                                     int numUniqueHosts)
   throws IOException {
-    if (!tasksInited.get()) {
+    if (this.numMapTasks == 0 || !tasksInited.get()) {
       LOG.info("Cannot create task split for " + profile.getJobID());
       return null;
     }
@@ -1196,8 +1201,9 @@ class JobInProgress {
                                                int clusterSize,
                                                int numUniqueHosts
                                               ) throws IOException {
-    if (status.getRunState() != JobStatus.RUNNING) {
-      LOG.info("Cannot create task split for " + profile.getJobID());
+    if (this.numReduceTasks == 0 || status.getRunState() != JobStatus.RUNNING) {
+      LOG.info("Cannot find reduce task for " + jobId + "(state : " 
+               + status.getRunState() + ", num-reduces : " + this.numReduceTasks);
       return null;
     }
     
