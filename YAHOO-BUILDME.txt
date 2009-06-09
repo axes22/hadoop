@@ -26,6 +26,7 @@ export CFLAGS=-m64
 export CXXFLAGS=-m64
 
 ant -Dversion=X.Y.Z -Dcompile.native=true -Dcompile.c++=true \
+        -Dforrest.home=/usr/local/forrest -Djava5.home=/usr/local/jdk1.5 \
         compile-core-native compile-c++ tar
 ======================================================================
 
